@@ -1,20 +1,16 @@
 import axios from 'axios'
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY
-const BASE_URL = 'https://api.themoviedb.org/3'
-
-export const fetchMovies = async (category = 'popular') => {
+export const fetchMovies = async () => {
 
   try {
-    const response = await axios.get(`${BASE_URL}/movie/${category}`, {
-      params: { api_key: API_KEY, language: 'fr-FR' }
-    })
+    const response = await axios.get('/api/movies')
     return response.data.results
   } 
   
   catch (error) {
-    console.error('Erreur lors de la récupération des films:', error)
+    console.error('Erreur API Proxy:', error)
     return []
+
   }
-  
+
 }
